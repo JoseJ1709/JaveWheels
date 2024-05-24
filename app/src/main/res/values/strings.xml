@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">JaveWheels</string>
+    <string name="button_takePicture">Take Picture</string>
+    <string name="temp_images_dir">temp_images</string>
+    <string name="temp_image">temp_image.jpg</string>
+    <string name="authorities">com.example.fileprovider</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".User.MenuActivityU">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@drawable/custom_botton1"
+        android:id="@+id/buttonMap"
+        android:text="Mapas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNoti"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@drawable/custom_botton1"
+        android:id="@+id/buttonNoti"
+        android:text="Notificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMap"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAcount"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@drawable/custom_botton1"
+        android:id="@+id/buttonAcount"
+        android:text="Cuenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNoti"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
