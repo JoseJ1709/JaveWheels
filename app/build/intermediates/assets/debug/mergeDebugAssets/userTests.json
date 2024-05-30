@@ -1,0 +1,11 @@
+{
+  "datos":[
+    {"id": 20, "nombre":"Peter Aduku","placa":"BTN-852"}
+  ],
+  "route": [
+    {"id": 20, "number": 1, "longitud": "-74.065350", "latiud": "4.627379"},
+    {"id": 18, "number": 2, "longitud": "-74.068665", "latiud": "4.617262"},
+    {"id": 17, "number": 3, "longitud": "-74.068773", "latiud": "4.610215"},
+    {"id": 19, "number": 4, "longitud": "-74.063966", "latiud": "4.603371"}
+  ]
+}

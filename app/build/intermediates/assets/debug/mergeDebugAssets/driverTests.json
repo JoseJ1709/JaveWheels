@@ -1,0 +1,39 @@
+{
+  "datos": [
+    {
+      "id": 1,
+      "nombre": "Park Brasil",
+      "precio": "15.000$COP",
+      "longitud": "-74.07150",
+      "latitud": "4.626950"
+    },
+    {
+      "id": 2,
+      "nombre": "Otro",
+      "precio": "20.000$COP",
+      "longitud": "-74.071460",
+      "latitud": "4.623562"
+    },
+    {
+      "id": 3,
+      "nombre": "Parque Nacional",
+      "precio": "15.000$COP",
+      "longitud": "-74.063419",
+      "latitud": "4.624498"
+    },
+    {
+      "id": 4,
+      "nombre": "Park Way",
+      "precio": "15.000$COP",
+      "longitud": "-74.074652",
+      "latitud": "4.630409"
+    },
+    {
+      "id": 5,
+      "nombre": "Los Fuegos Visto",
+      "precio": "25.000$COP",
+      "longitud": "-74.074073",
+      "latitud": "4.633757"
+    }
+  ]
+}

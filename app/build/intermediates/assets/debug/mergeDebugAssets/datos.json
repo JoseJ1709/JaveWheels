@@ -1,0 +1,7 @@
+{
+  "datos":[
+    {"id": 1, "time":"5km : 5min","direction":"Calle 45 - 7"},
+    {"id": 2, "time":"10km : 10min","direction":"Calle 34 - 7"},
+    {"id": 3, "time":"15km : 15min","direction":"Calle 40 - 7"}
+  ]
+}
