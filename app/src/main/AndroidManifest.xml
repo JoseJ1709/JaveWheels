@@ -21,6 +21,9 @@
         android:theme="@style/Theme.JaveWheels"
         tools:targetApi="31">
         <activity
+            android:name=".Start.RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".Driver.MapsActivityD"
             android:exported="false" />
         <activity
@@ -36,9 +39,6 @@
             android:name=".User.NotificationActivityU"
             android:exported="false" />
         <activity
-            android:name=".User.NotificationActivity"
-            android:exported="false" />
-        <activity
             android:name=".User.MapsActivityU"
             android:exported="false" />
         <activity
@@ -52,9 +52,6 @@
             android:exported="false" />
         <activity
             android:name=".Start.StartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Start.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

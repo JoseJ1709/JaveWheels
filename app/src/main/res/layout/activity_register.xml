@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/textViewImg3Label"
-       />
+        />
 
     <TextView
         android:id="@+id/textViewUserLabel"
