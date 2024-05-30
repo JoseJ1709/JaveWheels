@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".User.AcountActivityU">
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="My Perfil"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="80dp"/>
+
+    <ImageView
+        android:id="@+id/porfile"
+        android:layout_width="87dp"
+        android:layout_height="87dp"
+        android:src="@drawable/user"
+        app:layout_constraintTop_toTopOf="@id/textViewTitle"
+        app:layout_constraintBottom_toBottomOf="@id/editText1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        />
+
+
+    <EditText
+        android:id="@+id/editText1"
+        android:textAlignment="center"
+        android:background="@drawable/custom_rectangle"
+        android:layout_width="330dp"
+        android:layout_height="38dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/porfile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"/>
+
+
+    <EditText
+        android:id="@+id/editText2"
+        android:textAlignment="center"
+        android:background="@drawable/custom_rectangle"
+        android:layout_width="330dp"
+        android:layout_height="38dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/editText1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonSubmit"
+        android:layout_width="330dp"
+        android:layout_height="52dp"
+        android:textColor="@color/verde"
+        android:background="@drawable/custom_button2"
+        android:text="Actualizar"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        android:layout_marginTop="50dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonSubmit2"
+        android:layout_width="330dp"
+        android:layout_height="52dp"
+        android:textColor="@color/rojo"
+        android:background="@drawable/custom_botton1"
+        android:text="Log Out   "
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSubmit"
+        android:layout_marginTop="20dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

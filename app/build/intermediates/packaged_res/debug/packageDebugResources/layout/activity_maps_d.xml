@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Driver.MapsActivityD">
+
+    <org.osmdroid.views.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/sheet"
+        android:background="@drawable/custom_rectangle3"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="5dp"
+            android:src="@drawable/custom_botton4"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center|top"/>
+
+        <ListView
+            android:layout_marginTop="30dp"
+            android:id="@+id/lista"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSubmit"
+            android:layout_width="330dp"
+            android:layout_height="52dp"
+            android:textColor="@color/verde"
+            android:background="@drawable/custom_botton1"
+            android:text="Continuar"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="100dp"/>
+
+        <ListView
+            android:layout_marginTop="30dp"
+            android:id="@+id/lista2"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:visibility="invisible"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSubmit2"
+            android:visibility="invisible"
+            android:layout_width="190dp"
+            android:layout_height="52dp"
+            android:textColor="@color/verde"
+            android:background="@drawable/custom_botton1"
+            android:text="Confirmar"
+            android:layout_gravity="center_horizontal|left|bottom"
+            android:layout_marginBottom="100dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSubmit3"
+            android:visibility="invisible"
+            android:layout_width="190dp"
+            android:layout_height="52dp"
+            android:textColor="@color/verde"
+            android:background="@drawable/custom_botton3"
+            android:text="Atras"
+            android:layout_gravity="center_horizontal|right|bottom"
+            android:layout_marginBottom="100dp"/>
+
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/ViajeCheck"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="VIAJE CONFIRMADO"
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textAlignment="center"/>
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
