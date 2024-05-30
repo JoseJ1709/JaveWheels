@@ -107,7 +107,8 @@ class MapsActivityD : AppCompatActivity(), SensorEventListener, AdapterD1.OnData
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
         // Crear instancias de los adaptadores personalizados
-        adapterDis = AdapterD1(this, DataSingleton.ChoseList)
+        var listaDisponibles = generarListaDisponibles()
+        adapterDis = AdapterD1(this, listaDisponibles)
         adapterDis.onDataChangeListener = this
         adapterConf = AdapterD2(this, DataSingleton.SendList)
 
@@ -117,6 +118,11 @@ class MapsActivityD : AppCompatActivity(), SensorEventListener, AdapterD1.OnData
 
 
     }
+
+    private fun generarListaDisponibles(): List<DatoD1> {
+
+    }
+
     private fun setupLocationOverlay(mapController: IMapController) {
         val locationProvider = GpsMyLocationProvider(this)
         locationOverlay = MyLocationNewOverlay(locationProvider, map)

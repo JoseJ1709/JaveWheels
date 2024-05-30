@@ -22,8 +22,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.javewheels.Data.AdapterDriver
 import com.example.javewheels.Data.DataSingleton2
+import com.example.javewheels.Data.UserModel
 import com.example.javewheels.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -76,30 +83,65 @@ class MapsActivityU : AppCompatActivity(), SensorEventListener {
         val name = findViewById<TextView>(R.id.name)
         val placa1 = findViewById<TextView>(R.id.placa)
 
+        var precio1 = 0
+
         bottomSheetBehavior = BottomSheetBehavior.from(sheet)
         bottomSheetBehavior.peekHeight = 500
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
+        val database = FirebaseDatabase.getInstance()
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val userRef = database.getReference("users/$userId")
+        val aceptRef =   database.getReference("users/$userId/acept_viaje")
+        val valueEventListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val aceptado = dataSnapshot.getValue(Long::class.java)
+                if(aceptado==1.toLong()){
+                    precio.visibility = INVISIBLE
+                    precioText.visibility = INVISIBLE
+                    Conductor.visibility = VISIBLE
+                    ViajeCheck.visibility = INVISIBLE
+                    ViajeCheck2.setText("Viaje aceptado")
+                    ViajeCheck2.visibility = VISIBLE
+                    ButtonCheck.visibility = VISIBLE
+                    ButtonContinuar.visibility = INVISIBLE
+                    ButtonCancelar.visibility = INVISIBLE
+
+                    LeerConductor()
+                    marcarRuta()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Tu código aquí
+            }
+        }
+
         ButtonContinuar.setOnClickListener {
-            val precio1 = precio.text.toString()
+            precio1 = precio.text.toString().toInt()
+            enviarSolictud(precio1,userRef,valueEventListener,aceptRef)
 
             ButtonContinuar.visibility = INVISIBLE
             precio.visibility = INVISIBLE
             precioText.visibility = INVISIBLE
             Conductor.visibility = INVISIBLE
             ViajeCheck.visibility = VISIBLE
+            ViajeCheck2.setText("Nosotros te notificamos....")
             ViajeCheck2.visibility = VISIBLE
-            ButtonCheck.visibility = VISIBLE
+            ButtonCheck.visibility = INVISIBLE
             ButtonContinuar.visibility = INVISIBLE
             ButtonCancelar.visibility = VISIBLE
 
         }
 
         ButtonCancelar.setOnClickListener {
+            cancelarSolicitud(userRef, valueEventListener,aceptRef)
+
             ButtonContinuar.visibility = VISIBLE
             precio.visibility = VISIBLE
             precioText.visibility = VISIBLE
             ViajeCheck.visibility = INVISIBLE
+            ViajeCheck2.setText("Nosotros te notificamos....")
             ViajeCheck2.visibility = INVISIBLE
             ButtonCancelar.visibility = INVISIBLE
             ButtonCheck.visibility = INVISIBLE
@@ -112,10 +154,29 @@ class MapsActivityU : AppCompatActivity(), SensorEventListener {
             ViajeCheck.visibility = INVISIBLE
             ViajeCheck2.visibility = INVISIBLE
             ButtonCancelar.visibility = INVISIBLE
-            cargarJson(ButtonCheck,Conductor,ButtonCancelar,name,placa1)
             drawOnePoint(DataSingleton2.GeoPointList);
             drawRoute(DataSingleton2.GeoPointList)
         }
+
+    }
+
+    private fun LeerConductor() {
+        // Leer datos del conductor
+    }
+
+    private fun cancelarSolicitud(userRef: DatabaseReference, valueEventListener: ValueEventListener, aceptRef: DatabaseReference) {
+
+        userRef.child("Busc_viaje").setValue(0)
+        aceptRef.removeEventListener(valueEventListener)
+        userRef.child("acept_viaje").setValue(0)
+    }
+
+    private fun enviarSolictud(precio1: Int, userRef: DatabaseReference,valueEventListener: ValueEventListener,aceptRef: DatabaseReference) {
+
+
+        userRef.child("Busc_viaje").setValue(1)
+        userRef.child("Precio_viaje").setValue(precio1)
+        aceptRef.addValueEventListener(valueEventListener)
 
     }
 
@@ -210,21 +271,10 @@ class MapsActivityU : AppCompatActivity(), SensorEventListener {
     }
 
     private fun marcarRuta() {
+
+
         Toast.makeText(this, "Ruta marcada", Toast.LENGTH_SHORT).show()
-        val road = Polyline()   //create empty polyline
-        road.setPoints(DataSingleton2.GeoPointList)
-        map.overlays.add(road)   //add polyline to the map
-        map.invalidate()   //refresh the map
     }
 
-    private fun cargarJson(ButtonCheck: AppCompatButton, Conductor: LinearLayout, ButtonCancelar: AppCompatButton, name: TextView, placa1: TextView){
-        ButtonCancelar.visibility = INVISIBLE
-        Conductor.visibility = VISIBLE
-        ButtonCheck.visibility = VISIBLE
-        val nombre = DataSingleton2.Driver?.nombre
-        val placa = DataSingleton2.Driver?.placa
-        name.text = nombre
-        placa1.text = placa
-    }
 
 }

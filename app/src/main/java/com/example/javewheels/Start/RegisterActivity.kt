@@ -222,34 +222,32 @@ class RegisterActivity : AppCompatActivity() {
                 (userButton.isChecked || (driverButton.isChecked && !isEmptyplacaText && carImgButtonHasImage && LicImgButtonHasImage))
             ) {
                 // Register user in Firebase Authentication
-                val email = "${userText.text}@example.com"
+                val email = "${userText.text}@example.com"  // Convert user name to an email format
                 val password = pwdText.text.toString()
-
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
                             val user = auth.currentUser
-                            val userId = user?.uid
 
-                            if (userButton.isChecked && userId != null) {
-                                val userData = mapOf(
-                                    "username" to userText.text.toString(),
-                                    "password" to password
-                                )
-                                database.child("users").child(userId).setValue(userData)
-                                    .addOnSuccessListener {
-                                        Toast.makeText(this, "User registered successfully", Toast.LENGTH_LONG).show()
-                                    }
-                                    .addOnFailureListener {
-                                        Toast.makeText(this, "Failed to register user", Toast.LENGTH_LONG).show()
-                                    }
-                            } else if (driverButton.isChecked && userId != null) {
-                                val driverData = mapOf(
-                                    "username" to userText.text.toString(),
-                                    "password" to password,
-                                    "placa" to placaText.text.toString()
-                                )
-                                database.child("drivers").child(userId).setValue(driverData)
+                            val userData = HashMap<String, Any>()
+                            userData["name"] = userText.text.toString()
+                            userData["password"] = pwdText.text.toString()
+                            userData["type"] = if (userButton.isChecked) "user" else "driver"
+
+                            database.child("users").child(user!!.uid).setValue(userData)
+                                .addOnSuccessListener {
+                                    Toast.makeText(this, "User registered successfully", Toast.LENGTH_LONG).show()
+                                }
+                                .addOnFailureListener {
+                                    Toast.makeText(this, "Failed to register user", Toast.LENGTH_LONG).show()
+                                }
+
+                            if (driverButton.isChecked) {
+                                val driverData = HashMap<String, Any>()
+                                driverData["placa"] = placaText.text.toString()
+
+                                database.child("drivers").child(user.uid).setValue(driverData)
                                     .addOnSuccessListener {
                                         Toast.makeText(this, "Driver registered successfully", Toast.LENGTH_LONG).show()
                                     }
@@ -258,6 +256,7 @@ class RegisterActivity : AppCompatActivity() {
                                     }
                             }
                         } else {
+                            // If sign in fails, display a message to the user.
                             Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                         }
                     }
